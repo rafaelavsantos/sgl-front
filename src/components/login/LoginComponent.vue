@@ -1,0 +1,127 @@
+<template>
+  <div class="container-form">
+    <img src="../../assets/svg/logo.svg" alt="Logo">
+    <h3>Welcome back to the SGL</h3>
+    <form>
+      <div class="container-input">
+        <label for="email">E-mail</label>
+        <input v-model="form.email" type="email" name="email" id="email" placeholder="example@mail.com" />
+      </div>
+      <div class="container-input">
+        <label for="password">Password</label>
+        <input v-model="form.password" type="password" name="password" id="password" label="Password"
+          placeholder="***************" />
+      </div>
+      <div class="container-submit">
+        <input type="submit" value="Log in">
+      </div>
+    </form>
+    <p>
+      <router-link class="create-account-link" to="/esqueceu-senha">Forget Password?</router-link>
+    </p>
+    <p>Don't have account?
+      <router-link class="create-account-link" to="/cadastro-usuario">Sign up</router-link>
+    </p>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+const form = ref({
+  email: '',
+  password: ''
+})
+
+console.log(form.value.email)
+
+</script>
+
+<style scoped>
+* {
+  background-color: #fff;
+  color: #000;
+}
+
+.container-form img {
+  display: block;
+  margin: 0 auto;
+}
+
+h3 {
+  text-align: center;
+}
+
+.container-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-input>input {
+  background-color: #fcba0350;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.container-input>input:focus {
+  outline-color: var(--gold);
+}
+
+.container-input>label {
+  text-align: start;
+  margin: 5px 0;
+}
+
+.container-input>label::after {
+  content: ' *';
+  color: red;
+}
+
+.container-submit {
+  background-color: var(--gold);
+  margin: 10px 0;
+  text-align: center;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.container-submit>input {
+  background-color: transparent;
+  border: none;
+  padding: 8px 0;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.container-submit>input:hover {
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0.9;
+}
+
+.container-submit:hover {
+  transition: background-color 0.3s ease-in-out;
+  opacity: 0.9;
+}
+
+p {
+  text-align: center;
+  color: #333;
+  line-height: 1.3em;
+  font-size: 0.9em;
+}
+
+.create-account-link {
+  color: #956D00;
+  text-decoration: none;
+  transition: color .5s ease-in-out;
+}
+
+.create-account-link:hover {
+  color: #ffbb00;
+  transition: color .5s ease-in-out;
+}
+</style>
