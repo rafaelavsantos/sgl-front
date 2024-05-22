@@ -4,7 +4,7 @@
     <div class="subtitle">
       <h3>Please enter your email adress to valid.</h3>
     </div>
-    <form>
+    <form @submit.prevent="forgetPassword()">
       <div class="container-input">
         <label for="email">E-mail</label>
         <input v-model="form.email" type="email" name="email" id="email" placeholder="example@mail.com" />
@@ -26,19 +26,33 @@
     <p>You remember you password? 
       <router-link class="login-link" to="/login">Log in</router-link>
     </p>
+    <Message :msg="msg" v-show="msg" :backgroundColorClass="type" />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+// import { useRouter } from "vue-router";
+import { ref } from "vue";
+// import api from "../../boot/axios";
+import Message from "../MessageFeedback.vue";
+
+// const email = false;
+// const router = useRouter();
+const msg = ref(null);
+const type = ref(null);
 
 const form = ref({
-  email: '',
-  password: '',
-  confirmPassword: ''
-})
+  email: "",
+  password: "",
+  confirmPassword: "",
+});
 
-console.log(form.value.email)
+// função para atualizar a senha do usuário
+async function forgetPassword() {
+  type.value = "error";
+  msg.value = "Preencha os campos corretamente!";
+  setTimeout(() => (msg.value = ""), 2000);
+}
 
 </script>
 

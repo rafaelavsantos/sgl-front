@@ -2,7 +2,7 @@
   <div class="container-form">
     <img src="../../assets/svg/logo.svg" alt="Logo">
     <h3>Welcome back to the SGL</h3>
-    <form>
+    <form @submit.prevent="signIn()">
       <div class="container-input">
         <label for="email">E-mail</label>
         <input v-model="form.email" type="email" name="email" id="email" placeholder="example@mail.com" />
@@ -22,19 +22,67 @@
     <p>Don't have account?
       <router-link class="create-account-link" to="/cadastro-usuario">Sign up</router-link>
     </p>
+    <Message :msg="msg" v-show="msg" :backgroundColorClass="type" />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { useRouter } from "vue-router";
+import { ref } from "vue";
+import api from "@/boot/axios";
+import Message from "../MessageFeedback.vue";
+import { useAuthStore } from "@/stores/auth";
+
+const router = useRouter();
+const msg = ref(null);
+const type = ref(null);
+const auth = useAuthStore();
 
 const form = ref({
-  email: '',
-  password: ''
-})
+  email: "rafaela@example.com", // passando para facilitar, depois remover
+  password: "123@mudaR",
+});
 
-console.log(form.value.email)
+// realizar o login do usuário
+async function signIn() {
+  try {
+    if (!form.value.email || !form.value.password) {
+      type.value = "error";
+      msg.value = "Preencha os campos corretamente!";
+      setTimeout(() => (msg.value = ""), 2000);
+    }
 
+    const { data } = await api.post("/login", form.value); // acessa os usuários para fazer a verificação
+
+    // Armazenar o token e o id_user no armazenamento local
+    auth.setToken(data.acess_token);
+    auth.setUser(data.id_user);
+
+    if (data.acess_token) {
+      type.value = "sucess";
+      msg.value = "Login feito com sucesso!";
+
+      setTimeout(() => (msg.value = ""), 1000);
+      setTimeout(() => router.push("/book"), 1000); // realiza o login
+    }
+  } catch (error) {
+    if (error.response) {
+      type.value = "error";
+      msg.value = "Preencha os campos corretamente!";
+      setTimeout(() => (msg.value = ""), 2000);
+      
+      console.log("Server responded with:", error?.response?.data);
+      console.log("HTTP status code:", error.response.status);
+    } else {
+      console.log("Error details:", error.message);
+    }
+  }
+}
+
+// Função para voltar para a tela principal
+// function backToHome() {
+//   router.push({ name: "home" });
+// }
 </script>
 
 <style scoped>

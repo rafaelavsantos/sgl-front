@@ -1,9 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
-// import BookView from '../views/BookView.vue'
+import BookView from '../views/BookView.vue'
+import { useAuthStore } from '@/stores/auth';
 
-const routes = [
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
+  routes:
+    [
   {
     path: '/',
     name: 'home',
@@ -30,12 +34,57 @@ const routes = [
         component: () => import('../components/login/ForgetPassword.vue'),
       }
     ],
+  },
+  {
+    path: '/book',
+    component: BookView,
+    children: [
+      {
+        path: '',
+        name: 'dashboard',
+        component: () => import('../components/book/DashboardBook.vue'),
+        meta: { auth: false },
+      },
+      {
+        path: '/book/listagem',
+        name: 'book',
+        component: () => import('../components/book/BookPage.vue'),
+        meta: { auth: false },
+      },
+      {
+        path: '/create-book',
+        name: 'create-book',
+        component: () => import('../components/book/CreateBook.vue'),
+        meta: { auth: false },
+      },
+      {
+        path: '/edit-book',
+        name: 'edit-book',
+        component: () => import('../components/book/EditBook.vue'),
+        meta: { auth: false },
+      }
+    ]
   }
-]
+]});
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes
-})
+router.beforeEach(async (to, from, next) => {
+  // para garantir que a pessoa quevai acessar tem autorização
+  if (to.meta?.auth) {
+    const auth = useAuthStore();
+    if (auth.token && auth.id_user) {
+      const isAuthenticated = await auth.checkToken();
 
-export default router
+      if (isAuthenticated) {
+        next();
+      } else {
+        next({ name: 'login' });
+      }
+    } else {
+      next({ name: 'login' });
+    }
+  } else {
+    next();
+  }
+});
+
+export default router;
