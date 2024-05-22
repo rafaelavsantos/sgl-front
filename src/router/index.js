@@ -21,16 +21,16 @@ const router = createRouter({
       {
         path: '',
         name: 'login',
-        component: () => import('../components/login/LoginComponent.vue'),
+        component: () => import('../components/login/LoginPage.vue'),
       },
       {
-        path: '/cadastro-usuario',
-        name: 'cadastro-usuario',
+        path: '/create-user',
+        name: 'create-user',
         component: () => import('../components/login/CreateUser.vue'),
       },
       {
-        path: '/esqueceu-senha',
-        name: 'esqueceu-senha',
+        path: '/forget-password',
+        name: 'forget-password',
         component: () => import('../components/login/ForgetPassword.vue'),
       }
     ],

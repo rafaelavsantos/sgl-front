@@ -17,10 +17,10 @@
       </div>
     </form>
     <p>
-      <router-link class="create-account-link" to="/esqueceu-senha">Forget Password?</router-link>
+      <router-link class="create-account-link" to="/forget-password">Forget Password?</router-link>
     </p>
     <p>Don't have account?
-      <router-link class="create-account-link" to="/cadastro-usuario">Sign up</router-link>
+      <router-link class="create-account-link" to="/create-user">Sign up</router-link>
     </p>
     <Message :msg="msg" v-show="msg" :backgroundColorClass="type" />
   </div>
