@@ -172,7 +172,7 @@ async function registerBook() {
 }
 
 function backToDashboard() {
-  router.push("/book/listagem");
+  router.push("/management-book");
 }
 function formatDate() {
   const data_i = new Date(form.value.data_inicial);

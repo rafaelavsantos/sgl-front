@@ -40,6 +40,7 @@ console.log(props.menuItems);
   align-items: center;
   padding: 10px;
   font-size: 16px;
+  text-decoration: none;
 }
 .items:hover {
   transition: .5s;
@@ -52,5 +53,8 @@ console.log(props.menuItems);
 }
 .container-items, p, img {
   background-color: #FCBA03;
+}
+img {
+  width: 30px;
 }
 </style>

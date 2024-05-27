@@ -1,18 +1,16 @@
 <template>
   <div class="container">
     <div class="container-logo">
-      <i class="fa-solid fa-bars icon" @click="btnClick()"></i>
-      <img src="../../assets/svg/logo.svg" alt="logo" />
+      <span class="material-symbols-outlined icon" @click="btnClick()">
+        menu
+      </span>
+      <img src="../../assets/svg/logo2.svg" alt="logo" />
       <p>Sistema de Gerenciamento de Leituras</p>
     </div>
 
     <div class="container-user" v-if="showRoute()">
       <span>Bem-vindo, {{ user }}!</span>
-      <i
-        class="fa-solid fa-right-from-bracket user"
-        @click="backToLogin()"
-        title="Logout"
-      ></i>
+      <i class="fa-solid fa-right-from-bracket user" @click="backToLogin()" title="Logout"></i>
     </div>
   </div>
 </template>
@@ -42,8 +40,8 @@ function btnClick() {
   emits("toggleSidebar");
 }
 
-function showRoute(){
-  const routes = (route.path == '/book') || (route.path == '/book/listagem');  
+function showRoute() {
+  const routes = (route.path == '/book') || (route.path == '/book/listagem');
 
   return routes;
 }
@@ -61,41 +59,53 @@ function showRoute(){
   background-color: #000;
   color: #fcba03;
 }
+
 .container-user {
   display: flex;
   flex-direction: row;
   align-items: baseline;
   gap: 50px;
 }
+
 .container-user p {
   padding-right: 10px;
 }
+
 .user {
   cursor: pointer;
   font-size: 20px;
   padding-right: 20px;
 }
+
 .container-logo {
   display: flex;
   align-items: center;
   gap: 30px;
 }
+
+.container-logo img {
+  width: 40px;
+}
+
 .container-logo p {
   text-transform: uppercase;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
 }
+
 .icon {
   cursor: pointer;
-  font-size: 18px;
 }
+
 li {
   list-style-type: none;
 }
+
 @media screen and (max-width: 800px) {
   .container-logo p {
     display: none;
   }
+
   .container-user span {
     display: none;
   }

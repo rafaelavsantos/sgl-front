@@ -36,7 +36,7 @@ const router = createRouter({
     ],
   },
   {
-    path: '/book',
+    path: '/dashboard',
     component: BookView,
     children: [
       {
@@ -46,7 +46,7 @@ const router = createRouter({
         meta: { auth: false },
       },
       {
-        path: '/book/listagem',
+        path: '/management-book',
         name: 'book',
         component: () => import('../components/book/BookPage.vue'),
         meta: { auth: false },

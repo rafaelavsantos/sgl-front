@@ -23,13 +23,13 @@ const type = ref(null);
 const menuItems = [
   {
     label: "Dashboard",
-    route: "/book",
-    iconPath: require("@/assets/svg/logo.svg"),
+    route: "/dashboard",
+    iconPath: require("@/assets/png/dashboard-icon.png"),
   },
   {
     label: "Livros",
-    route: "/book/listagem",
-    iconPath: require("@/assets//svg/logo.svg"),
+    route: "/management-book",
+    iconPath: require("@/assets/png/book-icon.png"),
   },
 ];
 
