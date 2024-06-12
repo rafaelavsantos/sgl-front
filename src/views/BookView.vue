@@ -47,7 +47,7 @@ function toggleSidebar() {
 #container {
   display: flex;
   flex-direction: row;
-  min-height: 100vh;
+  min-height: 100%;
 }
 .container-menu {
   width: 30vh;

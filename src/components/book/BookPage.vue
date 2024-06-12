@@ -1,90 +1,112 @@
 <template>
-  <div id="container">
-    <div id="container-primary">
-      <div v-if="isEmpty" class="container-text">
-        <h1><i class="fa-solid fa-book-open-reader"></i> Livros</h1>
-        <p>
-          Sua lista está vazia, clique no botão cadastrar para começar a
-          preencher sua lista.
-        </p>
-        <input
-          class="container-btn"
-          type="button"
-          value="Cadastrar"
-          @click="addBook()"
-        />
-      </div>
-
-      <!-- Tabela para mostrar os dados -->
-      <div v-else class="container-table">
-        <div>
-          <h1 id="titulo-table">
-            <i class="fa-solid fa-book-open-reader"></i> Livros
-          </h1>
-        </div>
-        <div class="container-second">
-          <div class="container-search" @click="searchBook()">
-            <input type="search" placeholder="Search book " />
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </div>
-          <div class="container-add" @click="addBook()" title="Adicionar Livro">
-            <span>+ Adicionar</span>
-          </div>
-        </div>
-
-        <!-- Table -->
-        <div class="table-scroll">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th class="thead-titulo">Título</th>
-                <th>Autor</th>
-                <th>Quantidade de páginas</th>
-                <th>Data de Início</th>
-                <th>Data de Fim</th>
-                <th class="thead-status">Status</th>
-                <th>Tipo</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="book in books" :key="book.id">
-                <td>{{ book.id }}</td>
-                <td class="thead-titulo">{{ book.titulo }}</td>
-                <td>{{ book.autor }}</td>
-                <td>{{ book.quant_page }}</td>
-                <td>{{ book.data_inicial }}</td>
-                <td>{{ book.data_final }}</td>
-                <td class="thead-status">{{ book.status }}</td>
-                <td>{{ book.tipo }}</td>
-                <td class="icon-acoes">
-                  <router-link to="/edit-book" title="Editar Livro"
-                    >Editar[ICON]</router-link>
-                  <a href="#" @click="removeBook(id)" title="Remover Livro"
-                    >Deletar[ICON]</a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  <main>
+    <!-- [Listagem vazia] -->
+    <h1>Seus Livros</h1>
+    <div v-if="isListEmpty" class="table-empty-container">
+      <p>
+        Sua lista está vazia, clique no botão cadastrar para começar a
+        preencher sua lista.
+      </p>
+      <div class="add-btn" title="Adicionar Livro">
+        <button>+ Adicionar</button>
       </div>
     </div>
-  </div>
+
+    <!-- [Table] -->
+    <div v-else class="table-container">
+      <div class="filter-add-book">
+        <div class="search-container" @click="searchBook()">
+          <input type="search" placeholder="Search book " />
+          <img src="../../assets/svg/search-icon.svg" alt="Search Icon">
+        </div>
+        <div class="add-btn" title="Adicionar Livro">
+          <button>+ Adicionar</button>
+        </div>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th class="border-id">#</th>
+              <th>Título</th>
+              <th>Autor</th>
+              <th>Data de Início</th>
+              <th>Data de Fim</th>
+              <th>Status</th>
+              <th class="border-acoes">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="book in books" :key="book.id">
+              <td>{{ book.id }}</td>
+              <td :title="book.title">{{ book.title }}</td>
+              <td :title="book.author">{{ book.author }}</td>
+              <td>{{ book.date_initial }}</td>
+              <td>{{ book.date_end }}</td>
+              <td><p :class="statusClass(book.status_read)">{{ book.status_read }}</p></td>
+              <td class="icon-acoes">
+                <img src="../../assets/svg/edit-icon.svg" alt="Edit Icon" @click="editBook(id)">
+                <img src="../../assets/svg/delete-icon.svg" alt="Delete Icon" @click="removeBook(id)">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
 </template>
 
 <script setup>
-import { useRouter } from "vue-router";
-import api from "@/boot/axios";
-import { onMounted, ref } from "vue";
+import { ref } from 'vue';
 
-const isEmpty = false;
-const router = useRouter();
+const isListEmpty = false;
 
-const books = ref([]); // recebe os valores
+const books = ref([
+  {
+    id: 1,
+    title: 'Teste quando ter mais dados na linha a linha ficarar assim consertar isso',
+    author: 'Teste competindo com as outras linhas',
+    date_initial: '10/10/2023',
+    date_end: '10/01/2024',
+    status_read: 'Lido'
+  },
+  {
+    id: 1,
+    title: 'Teste',
+    author: 'Teste',
+    date_initial: '10/10/2023',
+    date_end: '10/01/2024',
+    status_read: 'Lido'
+  },
+  {
+    id: 1,
+    title: 'Teste',
+    author: 'Teste',
+    date_initial: '10/10/2023',
+    date_end: '10/01/2024',
+    status_read: 'Lendo'
+  },
+  {
+    id: 1,
+    title: 'Teste',
+    author: 'Teste',
+    date_initial: '10/10/2023',
+    date_end: '10/01/2024',
+    status_read: 'Lerei'
+  },
+  {
+    id: 1,
+    title: 'Teste',
+    author: 'Teste',
+    date_initial: '10/10/2023',
+    date_end: '10/01/2024',
+    status_read: 'Lido'
+  }
+]); // recebe os valores
 
-function addBook() {
-  router.push("/create-book");
+function editBook(id) {
+  console.log("Editar livro!", id);
 }
 
 function removeBook(id) {
@@ -95,15 +117,36 @@ function searchBook() {
   console.log("Procurar livro!");
 }
 
-async function buscarDados() {
-  const { data } = await api.get("/book"); // requisição para pegar todos os dados dos livros cadastrados
-  books.value = data;
-  console.log(books.value);
+function statusClass(status) {
+  switch(status) {
+    case 'Lido':
+      return 'status-lido';
+    case 'Lendo':
+      return 'status-lendo';
+    case 'Lerei':
+      return 'status-lerei';
+    default:
+      return 'status-default';
+  }
 }
 
-onMounted(() => {
-  buscarDados();
-});
+// import api from "@/boot/axios";
+// import { onMounted, ref } from "vue";
+
+
+
+
+
+
+// // async function buscarDados() {
+// //   const { data } = await api.get("/book"); // requisição para pegar todos os dados dos livros cadastrados
+// //   books.value = data;
+// //   console.log(books.value);
+// // }
+
+// // onMounted(() => {
+// //   buscarDados();
+// // });
 </script>
 
 <style scoped>
@@ -112,257 +155,240 @@ onMounted(() => {
   color: #000;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
-#container {
+
+main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
-}
-#container h1 {
-  border-bottom: #ccc solid 1px;
-  font-size: 25px;
-}
-#container h1 i {
-  font-size: 25px;
-}
-#container p {
-  margin: 15px 0 15px 0;
-}
-#titulo-table {
-  margin: 0;
-  padding-bottom: 10px;
-  text-align: center;
-}
-#container-primary {
-  border: 1px solid #ccc;
+  height: 100vh;
+  width: 80%;
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
-  margin: 15px 0 15px 0;
-  height: 100%;
-  border-radius: 15px;
+  margin: 0px auto;
 }
-.container-second {
+
+h1 {
+  text-align: center;
+  font-size: 32px;
+  margin: 20px 0;
+  border-bottom: inset;
+  width: 90%;
+}
+
+.table-empty-container p {
+  color: #9b9a9a;
+  margin-bottom: 20px;
+}
+
+.add-btn {
   display: flex;
-  justify-content: flex-end;
-  align-items: baseline;
-  margin: 5px 0 10px 0;
+  align-items: center;
+  justify-content: center;
 }
-.container-search {
-  display: flex;
-  padding-right: 10px;
-  margin-top: 10px;
-}
-.container-search input {
+
+.add-btn button {
   border: none;
-  background: #8080801b;
-  padding: 10px;
-  font-size: 14px;
-  width: 300px;
-}
-.container-search i {
-  background: #8080801b;
-  color: gray;
-  padding: 10px;
-}
-.container-search input:focus {
-  outline: none;
-}
-.container-add {
-  display: flex;
-  justify-content: right;
-  margin-bottom: 15px;
-  font-size: 16px;
-  border: none;
-}
-.container-add span {
   background-color: #6f5cc3;
   color: #fff;
-  padding: 10px;
+  padding: 8px 30px;
+  font-size: 1em;
+  border-radius: 6px;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  transition: .5s;
 }
-.container-table {
-  width: 1200px;
-  padding: 10px;
-  border-radius: 15px;
+
+.add-btn button:hover {
+  transition: .5s;
+  opacity: .8;
 }
+
+.table-container {
+  width: 100%;
+  padding: 0 15px;
+}
+
+.filter-add-book {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.search-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin-right: 10px;
+}
+
+.search-container input[type="search"] {
+  width: 100%;
+  border: none;
+  padding: 10px 40px 10px 10px;
+  background: #8080801b;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.search-container input[type="search"]:focus {
+  outline-color: #8080801b;
+}
+
+.search-container img {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background: transparent;
+}
+
 /* Estilo geral da tabela */
-.table {
+table {
   width: 100%;
   border-collapse: collapse;
 }
-.table th,
-.table td {
+
+table th,
+table td {
   padding: 8px;
   text-align: left;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
 /* Estilizando o cabeçalho da tabela */
-.table th {
-  background-color: #fcba03;
+table th {
+  background-color: #fcba0344;
   color: #000;
   font-weight: bold;
   text-align: center;
   padding: 10px;
+  font-size: 0.9em;
 }
-.table tr:nth-child(even) {
-  background-color: #fcba03;
+
+.border-id {
+  border-top-left-radius: 12px;
+  width: 5%;
 }
+
+.border-acoes {
+  border-top-right-radius: 12px;
+}
+
+.thead-titulo {
+  width: 200px;
+}
+
 /* Estilizando as linhas da tabela */
-.table td {
-  border-bottom: 1px solid #ffbc03;
+table td {
+  border-bottom: 1px solid #ffedbc;
   padding: 10px;
   text-align: center;
 }
-.thead-titulo {
-  width: 30%;
+
+.status-lido {
+  background-color: #1976D2;
+  color: #fff;
+  padding: 2px;
+  border-radius: 50px;
 }
-.thead-status {
-  width: 10%;
+
+.status-lendo {
+  background-color: #24A397;
+  color: #fff;
+  padding: 2px;
+  border-radius: 50px;
 }
+
+.status-lerei {
+  background-color:  #FBBC04;
+  color: #fff;
+  padding: 2px;
+  border-radius: 50px;
+}
+
+.status-default {
+  background-color: #808080;
+  color: #fff;
+}
+
+
 .icon-acoes {
   width: 10%;
 }
-.icon-acoes a {
-  padding-left: 5px;
-}
-.container-btn {
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  padding: 5px 50px 5px 50px;
-  background-color: #fcba03;
-  border: none;
-  font-size: 16px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-  width: 15%;
+
+.icon-acoes img {
   cursor: pointer;
 }
-.container-btn:hover {
-  transition: 0.5s;
-  background-color: #fbcd01;
-}
+
 @media (max-width: 1400px) {
-  #container {
-    height: 100vh;
-  }
   .table-scroll {
     max-width: 1100px;
     overflow-x: auto;
   }
-  .container-table {
-    width: 1100px;
-  }
 }
 @media (max-width: 1300px) {
-  #container {
-    height: 100vh;
-  }
   .table-scroll {
     max-width: 900px;
     overflow-x: auto;
-  }
-  .container-table {
-    width: 00px;
   }
 }
 @media (max-width: 1200px) {
-  #container {
-    height: 100vh;
-  }
   .table-scroll {
     max-width: 900px;
     overflow-x: auto;
   }
-  .container-table {
-    width: 900px;
-  }
 }
 @media (max-width: 900px) {
-  #container {
-    height: 100vh;
-  }
   .table-scroll {
     max-width: 800px;
     overflow-x: auto;
   }
-  .container-table {
-    width: 800px;
-  }
 }
 @media (max-width: 800px) {
-  .container-text {
-    margin: 10px;
-    text-align: center;
-  }
-  #container {
-    height: 100vh;
-  }
   .table-scroll {
     max-width: 700px;
     overflow-x: auto;
   }
-  .container-table {
-    width: 700px;
-  }
+
 }
 @media (max-width: 700px) {
-  #container {
-    height: 100vh;
-  }
   .table-scroll {
     max-width: 600px;
     overflow-x: auto;
-  }
-  .container-table {
-    width: 600px;
   }
 }
 @media (max-width: 600px) {
-  #container {
+  main {
     height: 100vh;
   }
   .table-scroll {
     max-width: 600px;
     overflow-x: auto;
-  }
-  .container-table {
-    width: 550px;
   }
 }
 @media (max-width: 500px) {
-  #container {
-    height: 100vh;
-  }
   .table-scroll {
     max-width: 600px;
     overflow-x: auto;
   }
-  .container-table {
-    width: 400px;
-  }
 }
 @media (max-width: 400px) {
-  #container {
-    height: 100vh;
-  }
   .table-scroll {
     max-width: 400px;
     overflow-x: auto;
-  }
-  .container-table {
-    width: 400px;
-    margin-left: 5px;
   }
 }
 @media (max-width: 350px) {
-  #container {
-    height: 100vh;
-  }
   .table-scroll {
     max-width: 400px;
     overflow-x: auto;
-  }
-  .container-table {
-    width: 300px;
   }
 }
 </style>
