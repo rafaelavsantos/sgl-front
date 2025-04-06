@@ -1,8 +1,10 @@
 <template>
     <form>
-        <h3>Welcome back to the website</h3>
+        <h3>Welcome to the website</h3>
 
-        <div class="container-input">
+        CADASTRO
+
+        <!-- <div class="container-input">
             <label for="inEmail">Email <span class="campo-obrigatorio">*</span></label>
             <div class="input-wrapper">
                 <input type="email" name="email" id="inEmail" placeholder="rafaela@example.com">
@@ -24,11 +26,10 @@
 
         <div class="container-btn">
             <button type="submit">Login Now</button>
-        </div>
+        </div> -->
     </form>
 
-    <p> <router-link to="/cadastro" class="link">Forget Password?</router-link></p>
-    <p>Don't have account? <router-link to="/cadastro" class="link">Sign up</router-link></p>
+    <p>Already have account? <router-link to="/" class="link">Login</router-link></p>
 </template>
 
 <script setup>
