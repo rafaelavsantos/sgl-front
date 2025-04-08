@@ -1,6 +1,6 @@
 <template>
     <form>
-        <h3>Welcome back to the website</h3>
+        <h3>Please enter your email address to verification, if you have account.</h3>
 
         <div class="container-input">
             <label for="inEmail">Email <span class="campo-obrigatorio">*</span></label>
@@ -12,27 +12,16 @@
             </div>
         </div>
 
-        <div class="container-input">
-            <label for="inPassword">Password <span class="campo-obrigatorio">*</span></label>
-            <div class="input-wrapper">
-                <input type="password" name="password" id="inPassword" placeholder="***************">
-                <div class="input-icon">
-                    <LockKeyhole color="#fff" />
-                </div>
-            </div>
-        </div>
-
         <div class="container-btn">
-            <button type="submit">Login Now</button>
+            <button type="submit">Send</button>
         </div>
     </form>
 
-    <p> <router-link to="/esqueceu-senha" class="link">Forget Password?</router-link></p>
-    <p>Don't have account? <router-link to="/cadastro" class="link">Sign up</router-link></p>
+    <p>You remember your password? <router-link to="/" class="link">Login</router-link></p>
 </template>
 
 <script setup>
-import { LockKeyhole, Mail } from 'lucide-vue-next';
+import { Mail } from 'lucide-vue-next';
 
 </script>
 

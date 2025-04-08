@@ -2,9 +2,17 @@
     <form>
         <h3>Welcome to the website</h3>
 
-        CADASTRO
+        <div class="container-input">
+            <label for="inName">Name <span class="campo-obrigatorio">*</span></label>
+            <div class="input-wrapper">
+                <input type="text" name="name" id="inName" placeholder="Rafaela Santos">
+                <div class="input-icon">
+                    <UserRound color="#fff" />
+                </div>
+            </div>
+        </div>
 
-        <!-- <div class="container-input">
+        <div class="container-input">
             <label for="inEmail">Email <span class="campo-obrigatorio">*</span></label>
             <div class="input-wrapper">
                 <input type="email" name="email" id="inEmail" placeholder="rafaela@example.com">
@@ -24,16 +32,27 @@
             </div>
         </div>
 
+        <div class="container-input">
+            <label for="inConfirmPassword">Confirm Password <span class="campo-obrigatorio">*</span></label>
+            <div class="input-wrapper">
+                <input type="password" name="confirmPassword" id="inConfirmPassword" placeholder="***************">
+                <div class="input-icon">
+                    <LockKeyhole color="#fff" />
+                </div>
+            </div>
+        </div>
+
+
         <div class="container-btn">
-            <button type="submit">Login Now</button>
-        </div> -->
+            <button type="submit">Sign Up Now</button>
+        </div>
     </form>
 
     <p>Already have account? <router-link to="/" class="link">Login</router-link></p>
 </template>
 
 <script setup>
-import { LockKeyhole, Mail } from 'lucide-vue-next';
+import { LockKeyhole, Mail, UserRound } from 'lucide-vue-next';
 
 </script>
 
@@ -69,6 +88,10 @@ form {
     background-color: #FCBA03;
     padding: 6px 6px 0 6px;
     border-radius: 4px;
+}
+
+.campo-obrigatorio {
+    color: #ff0000;
 }
 
 .container-btn {

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '../views/LoginView.vue'
 import FormCreateUser from '@/components/form/FormCreateUser.vue'
 import FormLogin from '@/components/form/FormLogin.vue'
+import FormForgetPassword from '@/components/form/FormForgetPassword.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,6 +20,11 @@ const router = createRouter({
           path: '/cadastro',
           name: 'cadastro', 
           component: FormCreateUser
+        },
+        {
+          path: '/esqueceu-senha',
+          name: 'esqueceu-senha', 
+          component: FormForgetPassword
         }
       ]
     },
