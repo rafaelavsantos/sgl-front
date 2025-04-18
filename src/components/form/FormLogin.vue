@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form @submit.prevent.stop="realizarLogin">
         <h3>Welcome back to the website</h3>
 
         <div class="container-input">
@@ -32,7 +32,17 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
 import { LockKeyhole, Mail } from 'lucide-vue-next';
+
+const router = useRouter();
+
+const realizarLogin = () => {
+    console.log('Aquu')
+    router.push('/dashboard')
+}
+
+
 
 </script>
 
@@ -90,6 +100,7 @@ form {
     color: #fff;
     font-weight: bold;
     cursor: pointer;
+    width: 100%;
 }
 
 .container-btn:hover {
