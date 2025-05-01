@@ -63,12 +63,4 @@ function activeAside() {
   transition: 0.5s ease;
   display: block;
 }
-
-@media (max-width: 400px) {
-  .content-container {
-    min-height: 100vh;
-  }
-
-
-}
 </style>

@@ -5,13 +5,13 @@
                 <Menu />
             </div>
             <img src="../../assets/logo.svg" alt="Lâmpada feliz">
-            <p>SISTEMA DE GERENCIAMENTO DE LEITURAS</p>
+            <p class="nome-completo">SISTEMA DE GERENCIAMENTO DE LEITURAS</p>
+            <p class="sigla">SGL</p>
         </div>
         <div class="btn-user">
             <button>
-                <CircleUserRound />
                 User
-                <ChevronDown @click="toggleSelectVisibility" />
+                <ChevronDown @click="toggleSelectVisibility" class="btn-cursor" />
             </button>
             <div class="select-dropdown" v-if="isSelectVisible">
                 <p>Perfil</p>
@@ -31,8 +31,6 @@ const isSelectVisible = ref(false);
 
 const toggleSelectVisibility = () => {
     isSelectVisible.value = !isSelectVisible.value;
-
-    console.log(isSelectVisible.value)
 }
 
 function toggleAside() {
@@ -81,6 +79,10 @@ function toggleAside() {
     gap: 10px;
 }
 
+.btn-cursor {
+    cursor: pointer;
+}
+
 .select-dropdown {
     background-color: #FFE082;
     position: absolute;
@@ -89,9 +91,23 @@ function toggleAside() {
     z-index: 10;
 }
 
-.select-dropdown select {
+.select-dropdown p {
     padding: 5px 15px;
-    width: 127px;
-    background-color: transparent;
+    width: 93.2px;
+    cursor: pointer;
+}
+
+.sigla {
+    display: none;
+}
+
+@media (max-width: 570px) {
+    .nome-completo {
+        display: none;
+    }
+
+    .sigla {
+        display: block;
+    }
 }
 </style>

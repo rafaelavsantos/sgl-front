@@ -1,12 +1,12 @@
 <template>
     <div>
-        <p>SGL</p>
-        <h4 @click="goToDashboard">
+        <span>SGL</span>
+        <p @click="goToDashboard">
             <LayoutDashboard /> Dashboard
-        </h4>
-        <h4 @click="goToBook">
+        </p>
+        <p @click="goToBook">
             <BookMarked /> Books
-        </h4>
+        </p>
     </div>
 </template>
 
@@ -26,16 +26,16 @@ const goToBook = () => {
 </script>
 
 <style scoped>
-p {
+span {
     padding: 5px;
 }
 
-h4 {
+p {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 5px;
-    margin: 5px 15px;
+    gap: 15px;
+    margin: 15px;
     cursor: pointer;
 }
 </style>
