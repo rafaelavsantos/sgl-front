@@ -43,7 +43,6 @@ function activeAside() {
 }
 
 .main-container {
-  background-color: #f5f5f5;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -51,6 +50,7 @@ function activeAside() {
 
 .content-container {
   flex: 1;
+  background-color: #FFF8E1;
 }
 
 .asideHidden {
