@@ -28,6 +28,7 @@ const props = defineProps(['cardColor', 'description', 'quantidade']);
   justify-content: center;
   border-radius: 4px;
   margin: 15px;
+  cursor: pointer;
 }
 
 p {
