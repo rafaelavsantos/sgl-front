@@ -7,13 +7,13 @@
                 </h1>
 
                 <div class="input-container">
-                    <input type="search" id="search" placeholder="Search book">
+                    <input type="search" id="search" placeholder="Buscar livro">
                     <Search color="#ccc" />
                 </div>
             </div>
             <div class="book-content1" v-if="books.length == 0">
                 <p>Sua lista está vazia, clique no botão cadastrar para começar a preencher sua lista.</p>
-                <button type="button">+ Adicionar livro</button>
+                <button type="button" @click="goToAddBook">+ Adicionar livro</button>
             </div>
             <div class="book-content2" v-else>
                 [Segunda página]
@@ -26,10 +26,17 @@
 <script setup>
 import { BookMarked, Search } from 'lucide-vue-next';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 const books = ref([]);
 
+const router = useRouter();
+
 console.log(books.value.length)
+
+const goToAddBook = () => {
+    router.push('cadastro-livro')
+}
 </script>
 
 <style scoped>
@@ -51,7 +58,7 @@ console.log(books.value.length)
     margin-bottom: 8px;
     display: flex;
     align-items: center;
-    padding: 0 5px;
+    padding: 0 5px 0 15px;
     border-radius: 6px;
 }
 

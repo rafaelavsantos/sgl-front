@@ -5,7 +5,7 @@
             <LayoutDashboard /> Dashboard
         </p>
         <p @click="goToBook">
-            <BookMarked /> Books
+            <BookMarked /> Livros
         </p>
     </div>
 </template>
