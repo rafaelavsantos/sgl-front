@@ -43,8 +43,8 @@ const router = createRouter({
           component: DashboardComponent
         },  
         {
-          path: '/book',
-          name: 'book', 
+          path: '/livros',
+          name: 'livros', 
           component: BookComponent
         }, 
         {

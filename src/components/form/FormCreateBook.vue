@@ -4,9 +4,8 @@
             <h1>
                 <BookMarked /> Cadastro de Livros
             </h1>
-
-
         </div>
+
         <div class="input-container">
             <div class="align-input">
                 <div class="input-form">
@@ -28,24 +27,20 @@
                 </div>
 
                 <div class="input-form">
-                    <label for="inFormat">Formato de livro:</label>
-                    <input type="text" name="format" id="inFormat" placeholder="Digite o nome do livro">
-                </div>
-            </div>
-
-            <div class="align-input">
-                <div class="input-form">
                     <label for="inDtStart">Data de início:</label>
                     <input type="date" name="dtStart" id="inDtStart"
                         placeholder="Digite a data de início da leitura do livro">
                 </div>
+            </div>
 
+            <div class="align-input">
                 <div class="input-form">
                     <label for="inDtEnd">Data final:</label>
                     <input type="date" name="dtEnd" id="inDtEnd"
                         placeholder="Digite a data de início da leitura do livro">
                 </div>
 
+                <div class="input-form"></div>
             </div>
 
             <div class="container-switch">
@@ -72,7 +67,7 @@ const router = useRouter();
 
 console.log(books.value.length)
 const goToBooks = () => {
-    router.push('book')
+    router.push('livros')
 }
 </script>
 
@@ -99,7 +94,7 @@ const goToBooks = () => {
     display: flex;
     flex-direction: column;
     margin: 6px 0;
-    flex: 1;
+    width: 50%;
 }
 
 .input-form input {
@@ -114,6 +109,10 @@ const goToBooks = () => {
     display: flex;
     flex-direction: row;
     gap: 16px;
+}
+
+.campo-obrigatorio {
+    color: #ff0000;
 }
 
 .container-switch {
@@ -202,5 +201,18 @@ const goToBooks = () => {
     padding: 5px 20px;
     border-radius: 8px;
     cursor: pointer;
+}
+
+/* Responsividade */
+@media (max-width: 640px) {
+    .align-input {
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    .input-form {
+        width: 100%;
+    }
 }
 </style>

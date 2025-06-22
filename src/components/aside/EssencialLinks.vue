@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container-links">
         <span>SGL</span>
         <p @click="goToDashboard">
             <LayoutDashboard /> Dashboard
@@ -21,7 +21,7 @@ const goToDashboard = () => {
 }
 
 const goToBook = () => {
-    router.push('/book')
+    router.push('/livros')
 }
 </script>
 
@@ -37,5 +37,9 @@ p {
     gap: 15px;
     margin: 15px;
     cursor: pointer;
+}
+
+.container-links {
+    height: 100vh;
 }
 </style>

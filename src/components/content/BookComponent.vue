@@ -53,16 +53,25 @@ const goToAddBook = () => {
     border-bottom: 1px solid #D9D9D9;
 }
 
+.book-header h1 {
+    font-size: 2rem;
+}
+
 .input-container {
     background-color: #F2F2F2;
     margin-bottom: 8px;
     display: flex;
     align-items: center;
-    padding: 0 5px 0 15px;
-    border-radius: 6px;
+    justify-content: space-between;
+    padding: 5px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
 }
 
 .input-container input {
+    padding-left: 5px;
     border: none;
     outline: none;
     background-color: transparent;
@@ -91,5 +100,40 @@ const goToAddBook = () => {
     box-shadow: -7px -3px 10px rgba(0, 0, 0, 0.25);
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.25);
     cursor: pointer;
+}
+
+/* Responsividade */
+@media (max-width: 800px) {
+    .book-header h1 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .book-header {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-container {
+        margin: 10px auto;
+    }
+
+}
+
+@media (max-width: 1045px) {
+    .book-header h1 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .book-header {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-container {
+        margin: 10px auto;
+    }
+
 }
 </style>

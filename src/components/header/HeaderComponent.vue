@@ -92,6 +92,7 @@ function toggleAside() {
 }
 
 .select-dropdown p {
+    font-size: 13px;
     padding: 5px 15px;
     width: 93.2px;
     cursor: pointer;

@@ -1,9 +1,9 @@
 <template>
   <div class="dashboard-container">
-    <CardDashboard card-color="#8566DE" quantidade="20" description="Livros Lidos"></CardDashboard>
-    <CardDashboard card-color="#4311D2" quantidade="20" description="Livros Lidos"></CardDashboard>
-    <CardDashboard card-color="#8566DE" quantidade="20" description="Livros Lidos"></CardDashboard>
-    <CardDashboard card-color="#4311D2" quantidade="20" description="Livros Lidos"></CardDashboard>
+    <CardDashboard card-color="#8566DE" quantidade="20" description="Livros cadastrados"></CardDashboard>
+    <CardDashboard card-color="#4311D2" quantidade="8" description="Livros lidos"></CardDashboard>
+    <CardDashboard card-color="#8566DE" quantidade="2" description="Livros em andamento"></CardDashboard>
+    <CardDashboard card-color="#4311D2" quantidade="10" description="Próximos livros"></CardDashboard>
 
     <div class="graphic-container">
       <Pie id="graphic" :options="optionsChart" :data="dataChart" />
@@ -69,5 +69,11 @@ const optionsChart = ref({
   box-sizing: border-box;
   margin: 20px;
   border-radius: 4px;
+}
+
+@media screen and (max-width: 800px) {
+  .graphic-container {
+    width: 350px;
+  }
 }
 </style>
