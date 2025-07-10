@@ -26,6 +26,10 @@ const goToBook = () => {
 </script>
 
 <style scoped>
+.container-links {
+    height: 100vh;
+}
+
 span {
     padding: 5px;
 }
@@ -37,9 +41,5 @@ p {
     gap: 15px;
     margin: 15px;
     cursor: pointer;
-}
-
-.container-links {
-    height: 100vh;
 }
 </style>

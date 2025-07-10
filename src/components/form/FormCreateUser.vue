@@ -42,7 +42,6 @@
             </div>
         </div>
 
-
         <div class="container-btn">
             <button type="submit">Sign Up Now</button>
         </div>

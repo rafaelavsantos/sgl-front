@@ -1,13 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '../views/LoginView.vue'
-import FormCreateUser from '@/components/form/FormCreateUser.vue'
-import FormLogin from '@/components/form/FormLogin.vue'
-import FormForgetPassword from '@/components/form/FormForgetPassword.vue'
-import BookView from '@/views/BookView.vue'
-import DashboardComponent from '@/components/content/DashboardComponent.vue'
-import BookComponent from '@/components/content/BookComponent.vue'
-import FormCreateBook from '@/components/form/FormCreateBook.vue'
-import FormEditBook from '@/components/form/FormEditBook.vue'
+import BookView from '../views/BookView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,17 +12,17 @@ const router = createRouter({
         {
           path: '',
           name: 'login', 
-          component: FormLogin
+          component: () => import('../components/form/FormLogin.vue')
         },
         {
           path: '/cadastro',
           name: 'cadastro', 
-          component: FormCreateUser
+          component: () => import('../components/form/FormCreateUser.vue')
         },
         {
           path: '/esqueceu-senha',
           name: 'esqueceu-senha', 
-          component: FormForgetPassword
+          component: () => import('../components/form/FormForgetPassword.vue')
         }
       ]
     },
@@ -40,22 +33,22 @@ const router = createRouter({
         {
           path: '',
           name: 'dashboard', 
-          component: DashboardComponent
+          component: () => import('../components/content/DashboardComponent.vue')
         },  
         {
           path: '/livros',
           name: 'livros', 
-          component: BookComponent
+          component: () => import('../components/content/BookComponent.vue')
         }, 
         {
           path: '/cadastro-livro',
           name: 'cadastro-livro', 
-          component: FormCreateBook
+          component: () => import('../components/form/FormCreateBook.vue')
         }, 
         {
           path: '/editar-livro',
           name: 'editar-livro', 
-          component: FormEditBook
+          component: () => import('../components/form/FormEditBook.vue')
         },    
       ]
     },

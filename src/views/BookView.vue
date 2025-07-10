@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-book">
     <aside class="aside-container" :class="toggleAsideActive ? 'asideActive' : 'asideHidden'">
       <EssencialLinks></EssencialLinks>
     </aside>
@@ -8,7 +8,7 @@
       <div class="content-container">
         <router-view></router-view>
       </div>
-      <div class="footer-container">
+      <div>
         <FooterComponent></FooterComponent>
       </div>
     </main>
@@ -29,7 +29,7 @@ function activeAside() {
 </script>
 
 <style scoped>
-.container {
+.container-book {
   display: flex;
   flex-direction: row;
   height: 100vh;
@@ -54,12 +54,11 @@ function activeAside() {
 }
 
 .asideHidden {
-  transition: 0.5s ease;
-  display: none;
+  width: 0;
+  overflow: hidden;
 }
 
 .asideActive {
-  transition: 0.5s ease;
-  display: block;
+  width: 250px;
 }
 </style>

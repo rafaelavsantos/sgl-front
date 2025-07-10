@@ -1,6 +1,7 @@
 <template>
   <div class="dashboard-container">
-    <CardDashboard card-color="#8566DE" quantidade="20" description="Livros cadastrados"></CardDashboard>
+    <CardDashboard card-color="#8566DE" quantidade="20" description="Livros cadastrados">
+    </CardDashboard>
     <CardDashboard card-color="#4311D2" quantidade="8" description="Livros lidos"></CardDashboard>
     <CardDashboard card-color="#8566DE" quantidade="2" description="Livros em andamento"></CardDashboard>
     <CardDashboard card-color="#4311D2" quantidade="10" description="Próximos livros"></CardDashboard>

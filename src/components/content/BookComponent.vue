@@ -1,25 +1,22 @@
 <template>
     <div class="book-container">
-        <div class="book-start">
-            <div class="book-header">
-                <h1>
-                    <BookMarked /> Minha Coleção de Livros
-                </h1>
+        <div class="book-header">
+            <h1>
+                <BookMarked /> Minha Coleção de Livros
+            </h1>
 
-                <div class="input-container">
-                    <input type="search" id="search" placeholder="Buscar livro">
-                    <Search color="#ccc" />
-                </div>
-            </div>
-            <div class="book-content1" v-if="books.length == 0">
-                <p>Sua lista está vazia, clique no botão cadastrar para começar a preencher sua lista.</p>
-                <button type="button" @click="goToAddBook">+ Adicionar livro</button>
-            </div>
-            <div class="book-content2" v-else>
-                [Segunda página]
+            <div class="input-container">
+                <input type="search" id="search" placeholder="Buscar livro">
+                <Search color="#ccc" />
             </div>
         </div>
-
+        <div class="book-content1" v-if="books.length == 0">
+            <p>Sua lista está vazia, clique no botão cadastrar para começar a preencher sua lista.</p>
+            <button type="button" @click="goToAddBook">+ Adicionar livro</button>
+        </div>
+        <div class="book-content2" v-else>
+            [Segunda página]
+        </div>
     </div>
 </template>
 

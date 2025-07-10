@@ -1,12 +1,10 @@
 <template>
-    <main class="container">
+    <main class="container-login">
         <section class="form-login">
-            <!-- [FORM] -->
             <h1>SGL</h1>
             <RouterView />
         </section>
         <section class="image-login">
-            <!-- [IMAGE] -->
             <img src="../assets/img/image.svg" alt="Girl reading book">
         </section>
     </main>
@@ -17,7 +15,7 @@ import { RouterView } from 'vue-router';
 </script>
 
 <style scoped>
-.container {
+.container-login {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -25,14 +23,14 @@ import { RouterView } from 'vue-router';
     height: 100vh;
 }
 
-h1 {
-    color: #FCBA03;
-    font-size: 2rem;
-}
-
 .form-login {
     flex: 4;
     text-align: center;
+}
+
+h1 {
+    color: #FCBA03;
+    font-size: 2rem;
 }
 
 .image-login {
@@ -41,7 +39,7 @@ h1 {
     justify-content: center;
     align-items: center;
     flex: 6;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
 }
 

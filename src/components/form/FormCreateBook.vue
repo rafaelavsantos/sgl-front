@@ -7,52 +7,46 @@
         </div>
 
         <div class="input-container">
-            <div class="align-input">
-                <div class="input-form">
-                    <label for="inTitle">Título: <span class="campo-obrigatorio">*</span></label>
-                    <input type="text" name="title" id="inTitle" placeholder="Digite o nome do livro">
-                </div>
-
-                <div class="input-form">
-                    <label for="inAuthor">Autor: </label>
-                    <input type="text" name="author" id="inAuthor" placeholder="Digite o nome do autor">
-                </div>
+            <div class="input-form">
+                <label for="inTitle">Título: <span class="campo-obrigatorio">*</span></label>
+                <input type="text" name="title" id="inTitle" placeholder="Digite o nome do livro">
             </div>
 
-            <div class="align-input">
-                <div class="input-form">
-                    <label for="inQtdPage">Quantidade de página:</label>
-                    <input type="number" name="qtdPage" id="inQtdPage"
-                        placeholder="Digite quantidade de página do livro">
-                </div>
-
-                <div class="input-form">
-                    <label for="inDtStart">Data de início:</label>
-                    <input type="date" name="dtStart" id="inDtStart"
-                        placeholder="Digite a data de início da leitura do livro">
-                </div>
+            <div class="input-form">
+                <label for="inAuthor">Autor: </label>
+                <input type="text" name="author" id="inAuthor" placeholder="Digite o nome do autor">
             </div>
 
-            <div class="align-input">
-                <div class="input-form">
-                    <label for="inDtEnd">Data final:</label>
-                    <input type="date" name="dtEnd" id="inDtEnd"
-                        placeholder="Digite a data de início da leitura do livro">
-                </div>
-
-                <div class="input-form"></div>
+            <div class="input-form">
+                <label for="inQtdPage">Quantidade de página:</label>
+                <input type="number" name="qtdPage" id="inQtdPage" placeholder="Digite quantidade de página do livro">
             </div>
 
-            <div class="container-switch">
-                <input class="switch switch--shadow" type="checkbox" name="switch-shadow" id="switch-shadow" />
-                <label for="switch-shadow"></label>
-                <p>Lendo no momento</p>
+            <div class="input-form">
+                <label for="inDtStart">Data de início:</label>
+                <input type="date" name="dtStart" id="inDtStart"
+                    placeholder="Digite a data de início da leitura do livro">
             </div>
 
-            <div class="btn">
-                <input type="submit" value="Salvar">
-                <input type="reset" value="Cancelar" @click="goToBooks">
+            <div class="input-form">
+                <label for="inDtEnd">Data final:</label>
+                <input type="date" name="dtEnd" id="inDtEnd" placeholder="Digite a data de início da leitura do livro">
             </div>
+
+            <div class="input-form">
+                <!-- [APENAS PARA O DESIGN] -->
+            </div>
+        </div>
+
+        <div class="container-switch">
+            <input class="switch switch--shadow" type="checkbox" name="switch-shadow" id="switch-shadow" />
+            <label for="switch-shadow"></label>
+            <p>Lendo no momento</p>
+        </div>
+
+        <div class="btn">
+            <input type="submit" value="Salvar">
+            <input type="reset" value="Cancelar" @click="goToBooks">
         </div>
     </div>
 </template>
@@ -87,14 +81,16 @@ const goToBooks = () => {
 
 .input-container {
     display: flex;
-    flex-direction: column;
+    flex-flow: row wrap;
+    gap: 16px;
 }
 
 .input-form {
+    flex: auto;
     display: flex;
     flex-direction: column;
     margin: 6px 0;
-    width: 50%;
+    width: 500px;
 }
 
 .input-form input {
@@ -205,11 +201,6 @@ const goToBooks = () => {
 
 /* Responsividade */
 @media (max-width: 640px) {
-    .align-input {
-        display: flex;
-        flex-direction: column;
-        gap: 0px;
-    }
 
     .input-form {
         width: 100%;
