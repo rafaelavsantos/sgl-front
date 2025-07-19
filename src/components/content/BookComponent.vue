@@ -15,7 +15,8 @@
             <button type="button" @click="goToAddBook">+ Adicionar livro</button>
         </div>
         <div class="book-content2" v-else>
-            [Segunda página]
+            <CardBook v-for="(book, index) in books" :key="index" :title="book.title" :author="book.author"
+                :quant="book.quant" :status="book.status" :img="book.img" />
         </div>
     </div>
 </template>
@@ -24,8 +25,38 @@
 import { BookMarked, Search } from 'lucide-vue-next';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import CardBook from '../card/CardBook.vue';
 
-const books = ref([]);
+const books = ref([
+    {
+        title: 'Teste',
+        author: 'Teste',
+        quant: 200,
+        status: 'Lendo',
+        img: 'src/assets/img/sem-imagem.svg'
+    },
+    {
+        title: 'Teste',
+        author: 'Teste',
+        quant: 200,
+        status: 'Lendo',
+        img: 'src/assets/img/sem-imagem.svg'
+    },
+    {
+        title: 'Teste',
+        author: 'Teste',
+        quant: 200,
+        status: 'Lendo',
+        img: 'src/assets/img/sem-imagem.svg'
+    },
+    {
+        title: 'Teste',
+        author: 'Teste',
+        quant: 200,
+        status: 'Lendo',
+        img: 'src/assets/img/sem-imagem.svg'
+    }
+]);
 
 const router = useRouter();
 
@@ -47,6 +78,7 @@ const goToAddBook = () => {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
     border-bottom: 1px solid #D9D9D9;
 }
 
@@ -99,6 +131,15 @@ const goToAddBook = () => {
     cursor: pointer;
 }
 
+.book-content2 {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: flex-start;
+    gap: 16px;
+    margin: 15px;
+}
+
 /* Responsividade */
 @media (max-width: 800px) {
     .book-header h1 {
@@ -117,7 +158,7 @@ const goToAddBook = () => {
 
 }
 
-@media (max-width: 1045px) {
+@media (max-width: 1170px) {
     .book-header h1 {
         font-size: 1.5rem;
         text-align: center;

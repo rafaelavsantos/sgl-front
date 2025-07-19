@@ -1,14 +1,12 @@
 <template>
   <div class="card-container" :style="{ backgroundColor: props.cardColor }">
-    <p class="card-icon">
+    <div>
       <img src="../../assets/img/icon.png" alt="Book">
-    </p>
-    <p class="card-quant">
-      {{ props.quantidade }}
-    </p>
-    <p class="card">
-      {{ props.description }}
-    </p>
+    </div>
+    <div class="card-info">
+      <p>{{ props.quantidade }}</p>
+      <p>{{ props.description }}</p>
+    </div>
   </div>
 </template>
 
@@ -31,7 +29,8 @@ const props = defineProps(['cardColor', 'description', 'quantidade']);
   cursor: pointer;
 }
 
-p {
+.card-info p {
   color: #fff;
+  text-align: center;
 }
 </style>
