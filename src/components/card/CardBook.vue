@@ -9,8 +9,12 @@
       <p><strong>Quantidade de páginas:</strong> {{ props.quant }}</p>
       <p><strong>Status:</strong> <span class="card-status">{{ props.status }}</span></p>
       <div class="card-icon">
-        <Pencil color="#008000" />
-        <Trash2 color="#EA0000" />
+        <a href="#">
+          <Pencil color="#008000" />
+        </a>
+        <a href="#">
+          <Trash2 color="#EA0000" />
+        </a>
       </div>
     </div>
   </div>
@@ -26,12 +30,12 @@ const props = defineProps(['title', 'author', 'quant', 'status', 'img']);
 
 <style scoped>
 .card-container {
-  width: 450px;
+  width: 400px;
   height: 200px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   border-radius: 4px;
   box-shadow: -5px -5px 15px rgba(0, 0, 0, 0.2);
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);

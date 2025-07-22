@@ -134,10 +134,10 @@ const goToAddBook = () => {
 .book-content2 {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
+    justify-content: center;
     align-content: flex-start;
     gap: 16px;
-    margin: 15px;
+    margin-top: 2%;
 }
 
 /* Responsividade */
